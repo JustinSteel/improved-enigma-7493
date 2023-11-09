@@ -1,0 +1,12 @@
+<h1>Chef show</h1>
+
+<h2>Most Popular Ingredients</h2>
+<div id="most-popular-ingredients">
+  <ul>
+    <% @chef.most_popular_ingredients.each do |ingredient| %>
+      <li><%= ingredient.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to "ingredients for dish", chef_ingredients_path(@chef) %>

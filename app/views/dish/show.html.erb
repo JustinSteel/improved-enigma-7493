@@ -9,7 +9,8 @@
   <h3>Ingredients</h3>
   <ul>
     <% @dish.ingredients.each do |ingredient| %>
-      <li><%= ingredient.name %></li>
+      <li id="ingredient_<%= ingredient.id %>"><%= ingredient.name %> 
+      <%= button_to "Delete Ingredient", { controller: "dish_ingredients", action: 'destroy', id: ingredient.id, dish_id: @dish.id }, method: :delete, data: { turbo: false }, testid: "delete_ingredient_#{ingredient.id}" %></li>
     <% end %>
   </ul>
      <%= render partial: 'form', locals: {

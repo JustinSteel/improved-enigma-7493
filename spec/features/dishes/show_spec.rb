@@ -79,7 +79,26 @@ RSpec.describe 'Dish Show Page' do
       expect(current_path).to eq(dish_path(@dish_1))
       
       expect(page).to have_content(@ingredient_3.name)
+    end
+
+    it 'I see a button next to each ingredient to delete that ingredient from the dish' do
+      # As a visitor
+      # When I visit a dish's show page
+      # I see a button next to each ingredient to delete that ingredient from a dash
+      # And when I click that button
+      # I am redirected back to that page
+      # And the ingredient is no longer listed.
+
+      visit dish_path(@dish_1)
+
+      expect(page).to have_button("Delete Ingredient")
       
+      within("#ingredient_#{@ingredient_1.id}") do
+        click_button 'Delete Ingredient'
+      end
+      expect(current_path).to eq(dish_path(@dish_1))
+
+      expect(page).to_not have_content(@ingredient_1.name)
     end
   end
 end
